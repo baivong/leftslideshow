@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Leftslideshow by baivong</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/baivong/leftslideshow">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/baivong/leftslideshow/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/baivong/leftslideshow/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Leftslideshow</h1>
+          <p>leftSlideshow is a jQuery plugin that offers a slight and simple way to add slide for images on your webpages.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/baivong">baivong</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="leftslideshow" class="anchor" href="#leftslideshow"><span class="octicon octicon-link"></span></a>leftslideshow</h1>
+
+<p>leftSlideshow is a jQuery plugin that offers a slight and simple way to add slide for images on your webpages.</p>
+
+<h3>
+<a name="home-page" class="anchor" href="#home-page"><span class="octicon octicon-link"></span></a>Home page</h3>
+
+<p><a href="http://zzbaivong.blogspot.com/">http://zzbaivong.blogspot.com/</a></p>
+
+<h3>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic usage:</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="nx">selector</span><span class="p">).</span><span class="nx">leftslideshow</span><span class="p">({</span>
+    <span class="nx">itemsSelector</span><span class="o">:</span> <span class="s2">".bv_img"</span><span class="p">,</span>
+    <span class="nx">appendTo</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="nx">infoContent</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="nx">effect</span><span class="o">:</span> <span class="s2">"slide"</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="s2">"640px"</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="s2">"480px"</span><span class="p">,</span>
+    <span class="nx">speed</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+    <span class="nx">slideRight</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">autoStart</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">autoPlay</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">controlRight</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">hideControl</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">infoBtn</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">noCopy</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">autoResize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">closeBtn</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">hideItems</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">scrollTo</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">open</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+    <span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+    <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="p">});</span>
+</pre></div>
+
+<h1>
+<a name="config-options" class="anchor" href="#config-options"><span class="octicon octicon-link"></span></a>Config options</h1>
+
+<table>
+<thead><tr>
+<th><strong>Option</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Default values</strong></th>
+<th><strong>Note</strong></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>itemsSelector</td>
+<td>selector</td>
+<td>".bv_img"</td>
+<td>Selector of gallery item.</td>
+</tr>
+<tr>
+<td>appendTo</td>
+<td>selector</td>
+<td>""</td>
+<td>Selector of element that slideshow will append.</td>
+</tr>
+<tr>
+<td>infoContent</td>
+<td>string</td>
+<td>""</td>
+<td>Set default image captions.</td>
+</tr>
+<tr>
+<td>effect</td>
+<td>string</td>
+<td>"slide"</td>
+<td>Image Slider Transition Effects, "fade" or "slide".</td>
+</tr>
+<tr>
+<td>width</td>
+<td>string</td>
+<td>"640px"</td>
+<td>Width slideshow.</td>
+</tr>
+<tr>
+<td>height</td>
+<td>string</td>
+<td>"480px"</td>
+<td>Height slideshow.</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>Number</td>
+<td>3000</td>
+<td>Slideshow speed in milliseconds .</td>
+</tr>
+<tr>
+<td>slideRight</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If set to true, slide is reverse, from left to right.</td>
+</tr>
+<tr>
+<td>Autostart</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If set to true, slideshow will create.</td>
+</tr>
+<tr>
+<td>Autoplay</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If set to true, slideshow will play after slideshow is create.</td>
+</tr>
+<tr>
+<td>controlRight</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If set to true, control is reverse, from left to right.</td>
+</tr>
+<tr>
+<td>hideControl</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Hide / Show control bar, if hidden, hover the bottom slideshow to show.</td>
+</tr>
+<tr>
+<td>infoBtn</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Hide / Show the info button.</td>
+</tr>
+<tr>
+<td>noCopy</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Enable / disable copy and download image at the usual way.</td>
+</tr>
+<tr>
+<td>autoResize</td>
+<td>Boolean</td>
+<td>true</td>
+<td>If set to true, automatically resize when the window size is less than the options set.</td>
+</tr>
+<tr>
+<td>closeBtn</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Hide / Show the close button.</td>
+</tr>
+<tr>
+<td>hideItems</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Hide gallery item that slideshow at created.</td>
+</tr>
+<tr>
+<td>scrollTo</td>
+<td>Boolean</td>
+<td>true</td>
+<td>Scrolling to the position of slideshow.</td>
+</tr>
+<tr>
+<td>open</td>
+<td>function</td>
+<td>function () {}</td>
+<td>Perform at slideshow created.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>function</td>
+<td>function () {}</td>
+<td>Perform at slideshow started.</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>function</td>
+<td>function () {}</td>
+<td>Perform at slideshow paused.</td>
+</tr>
+<tr>
+<td>close</td>
+<td>function</td>
+<td>function () {}</td>
+<td>Perform at slideshow closed.</td>
+</tr>
+</tbody>
+</table><h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<p>Create the image element.
+Add attribute <code>class="bv_img"</code> for pictures to put in the slideshow.
+Add captions to photos to attribute alt.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"bv_img"</span> <span class="na">src=</span><span class="s">"/images/img1.jpg"</span> <span class="na">alt=</span><span class="s">"Lorem ipsum dolor sit amet, consectetur adipisicing."</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<p>Attach <code>.leftslideshow()</code> from the image element parents.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"body"</span><span class="p">).</span><span class="nx">leftslideshow</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>jsFiddle: <a href="http://jsfiddle.net/baivong/28sUB/">http://jsfiddle.net/baivong/28sUB/</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>

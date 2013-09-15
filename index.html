@@ -246,17 +246,22 @@ Add captions to photos to attribute alt.</p>
 </script>
 <section>
 <ul class="tabs">
-			<li class="active"><a href="javascript:;" id="tab-g-comments">Google plus</a></li>
-			<li><a href="javascript:;" id="tab-fb-root">Facebook</a></li>
+	<li class="active"><a href="javascript:;" id="tab-g-comments">Google plus</a></li>
+	<li><a href="javascript:;" id="tab-fb-root">Facebook</a></li>
 </ul>
 <div class="g-comments"
-    data-href="http://baivong.github.io/leftslideshow/"
-    data-width="800"
-    data-first_party_property="BLOGGER"
-    data-view_type="FILTERED_POSTMOD">
+    	data-href="http://baivong.github.io/leftslideshow/"
+    	data-width="800"
+    	data-first_party_property="BLOGGER"
+      	data-view_type="FILTERED_POSTMOD">
 </div>
-<div id="fb-root"></div>
+<div class="fb-comments" 
+	data-href="http://baivong.github.io/leftslideshow/" 
+	data-colorscheme="dark" 
+	data-width="800">
+</div>
 </section>
+<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -264,8 +269,7 @@ Add captions to photos to attribute alt.</p>
   js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
-    </div>
+</div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>

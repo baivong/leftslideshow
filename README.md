@@ -3,7 +3,7 @@ leftslideshow
 leftSlideshow is a jQuery plugin that offers a slight and simple way to add slide for images on your webpages.
 
 
-###Home page
+###Homepage
 <http://zzbaivong.blogspot.com/>
 
 
@@ -44,9 +44,9 @@ itemsSelector |	selector | ".bv_img"          |	Selector of gallery item.
 appendTo      | selector | ""                 |	Selector of element that slideshow will append.
 infoContent   | string   | ""                 | Set default image captions.
 effect        | string   | "slide"            |	Image Slider Transition Effects, "fade" or "slide".
-width         | string   | "640px"            | Width slideshow.
-height        | string   | "480px"            | Height slideshow.
-speed         | Number   | 3000               | Slideshow speed in milliseconds	.
+width         | string   | "640px"            | Slideshow width.
+height        | string   | "480px"            | Slideshow height.
+speed         | Number   | 3000               | Slideshow speed in milliseconds.
 slideRight    | Boolean  | false              | If set to true, slide is reverse, from left to right.
 Autostart     | Boolean  | false              | If set to true, slideshow will create.
 Autoplay      | Boolean  | false              | If set to true, slideshow will play after slideshow is create.
@@ -57,7 +57,7 @@ noCopy        | Boolean  | false              | Enable / disable copy and downlo
 autoResize    | Boolean  | true               | If set to true, automatically resize when the window size is less than the options set.
 closeBtn      | Boolean  | true               | Hide / Show the close button.
 hideItems     | Boolean  | true               | Hide gallery item that slideshow at created.
-scrollTo      | Boolean  | true               | Scrolling to the position of slideshow.
+scrollTo      | Boolean  | true               | Scrolling to the slideshow place.
 open          | function | function () {}     | Perform at slideshow created.
 start         | function | function () {}     | Perform at slideshow started.
 pause         | function | function () {}     | Perform at slideshow paused.

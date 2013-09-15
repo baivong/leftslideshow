@@ -881,7 +881,7 @@ ul.tabs li.active a {
   -webkit-transition: width .5s;
 }
 .sharebutton a:hover {
-  width: auto;
+  width: 100%;
   transition: width .5s;
   -webkit-transition: width .5s;  
 }

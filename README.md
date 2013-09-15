@@ -17,7 +17,7 @@ http://zzbaivong.blogspot.com/
 **Config options**
 ==============
 **Option** | **Type** | **Default values** | **Note**
------------|----------|-----------------|--------------------------------------------
+-----------|----------|--------------------|--------------------------------------------
 itemsSelector |	selector | ".bv_img" |	Selector of gallery item.
 appendTo | selector | "" |	Selector of element that slideshow will append.
 infoContent | string | "" | Set default image captions.

@@ -659,12 +659,10 @@ pre code {
   margin: 0;
   padding: 0;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
 th {
   text-align: left;
   padding: 5px 10px;
@@ -672,14 +670,20 @@ th {
   color: #b6b6b6;
   font-family: 'OpenSansSemibold', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-weight: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-
+th:nth-child(odd) {
+  color: rgb(255, 143, 0);
+}
 td {
   text-align: left;
   padding: 5px 10px;
   border-bottom: 1px solid #434343;
 }
-
+td:nth-child(odd) {
+  color: rgb(127, 172, 163);
+}
 hr {
   border: 0;
   outline: none;

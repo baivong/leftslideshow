@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
+    <script src="javascripts/main.js"></script>    
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -246,28 +247,34 @@ Add captions to photos to attribute alt.</p>
 </script>
 <section>
 <ul class="tabs">
-	<li class="active"><a href="javascript:;" id="tab-g-comments">Google plus</a></li>
-	<li><a href="javascript:;" id="tab-fb-root">Facebook</a></li>
+	<li class="active"><a href="javascript:;" id="google">Google plus</a></li>
+	<li><a href="javascript:;" id="facebook">Facebook</a></li>
 </ul>
-<div class="g-comments"
-    	data-href="http://baivong.github.io/leftslideshow/"
-    	data-width="800"
-    	data-first_party_property="BLOGGER"
-      	data-view_type="FILTERED_POSTMOD">
-</div>
-<div class="fb-comments" 
-	data-href="http://baivong.github.io/leftslideshow/" 
-	data-colorscheme="dark" 
-	data-width="800">
+<div id="box">
+	<div id="google-box">
+		<div class="g-comments"
+		    	data-href="http://baivong.github.io/leftslideshow/"
+		    	data-width="800"
+		    	data-first_party_property="BLOGGER"
+		     	data-view_type="FILTERED_POSTMOD">
+		</div>
+	</div>
+	<div id="facebook-box" style="display:none">
+		<div class="fb-comments" 
+			data-href="http://baivong.github.io/leftslideshow/" 
+			data-colorscheme="light" 
+			data-width="800">
+		</div>
+	</div>
 </div>
 </section>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
+  	var js, fjs = d.getElementsByTagName(s)[0];
+  	if (d.getElementById(id)) return;
+  	js = d.createElement(s); js.id = id;
+  	js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1";
+  	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->

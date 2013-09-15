@@ -5,10 +5,12 @@ leftSlideshow is a jQuery plugin that offers a slight and simple way to add slid
 
 
 ###Home page
+
 http://zzbaivong.blogspot.com/
 
 
 ###Basic usage:
+
 	$(selector).leftslideshow();
 
 
@@ -46,9 +48,8 @@ Add attribute `class="bv_img"` for pictures to put in the slideshow.
 Add captions to photos to attribute alt.
 
 **Example:**
-	<img class="bv_img" src="/images/img1.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
-	<img class="bv_img" src="/images/img2.jpg" alt="Sed ut perspiciatis unde omnis iste natus error sit voluptatem." />
-	<img class="bv_img" src="/images/img3.jpg" alt="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+
+	`<img class="bv_img" src="/images/img1.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipisicing." />`
 
 Attach `.leftslideshow()` from the image element parents.
  

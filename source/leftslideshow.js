@@ -1,6 +1,6 @@
-/*
+/*!
  * leftslideshow - jQuery Plugin
- * version: 1.3 (Sun, 15 Sep 2013)
+ * version: 2.0 (Thursday, September 19, 2013)
  * requires jQuery v1.4 or later
  * Homepage http://zzbaivong.blogspot.com/
  * Copyright 2013 baivong
@@ -11,27 +11,22 @@
     $.fn.leftslideshow = function (opts) {
         var defaults = {
             itemsSelector: ".bv_img",
-            appendTo: "",
-            infoContent: "",
             effect: "slide",
             width: "640px",
             height: "480px",
             speed: 3000,
-            slideRight: false,
-            autoStart: false,
             autoPlay: false,
-            controlRight: false,
             hideControl: false,
-            infoBtn: false,
+            infoBtn: true,
+            infoShow: false,
+            infoContent: "",
             noCopy: false,
             autoResize: true,
-            closeBtn: true,
-            hideItems: true,
+            fullscreen: true,
             scrollTo: true,
             open: function () {},
             start: function () {},
-            pause: function () {},
-            close: function () {}
+            pause: function () {}
         };
         var options = $.extend({}, defaults, opts);
         return this.each(function () {
@@ -41,165 +36,155 @@
             if (speed < 500) {
                 speed = 500;
             }
-            items.click(function () {
-                if (items.length > 1) {
-                    options.open();
-                    if (!$(".b_SideImg", obj).length) {
-                        var effect = options.effect;
-                        var info = "",
-                            close = "",
-                            copy = "",
-                            appe = obj,
-                            apobj = $(options.appendTo, obj);
-                        if (options.infoBtn) {
-                            info = '<div class="b_info"></div>';
-                        }
-                        if (options.closeBtn) {
-                            close = '<div class="b_close"></div>';
-                        }
-                        if (options.noCopy) {
-                            copy = '<div class="b_copy"></div>';
-                        }
-                        if (apobj.length) {
-                            appe = apobj;
-                        }
-                        $('<div class="b_SideImg" style="width:' + options.width + '"><div class="b_content" style="height:' + options.height + '"><ul class="b_slides"></ul>' + info + close + '<div class="b_prev"></div><div class="b_next"></div>' + copy + '</div><div class="b_control"><div class="b_play"></div><div class="b_pause"></div><div class="b_paging"></div><div class="b_timebar"></div></div></div>').appendTo(appe);
-                        if (options.hideControl) {
-                            $(".b_control", obj).height(0).hover(function () {
-                                $(this).height("auto");
-                            }, function () {
-                                $(this).animate({
-                                    height: 0
-                                }, 100);
-                            });
-                        }
-                        if (options.controlRight) {
-                            $(".b_paging", obj).css({
-                                "padding-right": "32px",
-                                    "padding-left": 0,
-                                    "text-align": "left"
-                            });
-                            $(".b_play, .b_pause, .b_timebar", obj).css({
-                                left: "auto",
-                                right: 0
-                            });
-                        }
-                        items.each(function (i) {
-                            var tip = this.alt;
-                            if (!tip.length) {
-                                tip = "...";
-                            }
-                            if (options.infoContent.length) {
-                                tip = options.infoContent;
-                            }
-                            $(".b_slides", obj).append('<li><img src="' + this.src + '" /><p>' + tip + '</p></li>');
-                            $(".b_paging", obj).append('<a href="#">' + (i + 1) + '</a>');
-                        });
-                        if (options.autoResize) {
-                            var owid = $(".b_SideImg", obj).width(),
-                                ohei = $(".b_content", obj).height();
-                            var wh = $(window).height(),
-                                wrap = $(".b_SideImg", obj);
-                            if (obj.width() - 20 < owid) {
-                                wrap.width(obj.width() - 20);
-                            }
-                            if (wh < (ohei + $(".b_control", obj).height() + 40)) {
-                                $(".b_content", obj).height(wh - $(".b_control", obj).height() - 60);
-                            }
-                            $(window).resize(function () {
-                                if ((obj.width() - 20) < owid) {
-                                    wrap.width(obj.width() - 20);
-                                } else {
-                                    wrap.width(owid);
-                                }
-                                if ($(window).height() < (ohei + $(".b_control", obj).height() + 40)) {
-                                    $(".b_content", obj).height($(window).height() - $(".b_control", obj).height() - 60);
-                                } else {
-                                    $(".b_content", obj).height(ohei);
-                                }
-                            });
-                        }
-                        $(".b_next", obj).click(function () {
-                            if (!$(this).hasClass("stop")) {
-                                slideleft("last", "first", obj, effect);
-                            }
-                        });
-                        $(".b_prev", obj).click(function () {
-                            if (!$(this).hasClass("stop")) {
-                                slideleft("first", "last", obj, effect);
-                            }
-                        });
-                        $(".b_play", obj).click(function () {
-                            options.start();
-                            $(".b_play", obj).hide().next().show();
-                            slideshow(obj, speed, options.slideRight, effect);
-                        });
-                        $(".b_pause, .b_prev, .b_next, .b_paging a, .b_close", obj).click(function () {
-                            if ($(".b_play").is(":hidden")) {
-                                stopslide(obj);
-                            }
-                        });
-                        $(".b_pause", obj).click(function () {
-                            options.pause();
-                        });
-                        $(".b_paging a", obj).click(function () {
-                            $(".b_SideImg .selected", obj).removeClass("selected");
-                            $(this).addClass("selected");
-                            $(".b_slides li", obj).eq($(this).index()).addClass("selected");
-                            return false;
-                        });
-                        $(".b_info", obj).click(function () {
-                            $(".b_slides p", obj).toggleClass("show_info");
-                        });
-                        $(".b_close", obj).click(function () {
-                            $(".b_SideImg", obj).hide();
-                            items.show();
-                            $("br", obj).show();
-                            options.close();
-                        });
+            if (items.length > 1) {
+                options.open();
+                var effect = options.effect;
+                $('<div class="b_SideImg" style="width:' + options.width + '"><div class="b_content" style="height:' + options.height + '"><div class="b_timebar"></div><ul class="b_slides"></ul><div class="b_prev"></div><div class="b_next"></div><div class="b_load"></div></div><div class="b_control"><div class="b_play"></div><div class="b_pause"></div><div class="b_paging"></div></div></div>').insertAfter(items.last());
+                $(".b_slides", obj).addClass(function () {
+                    if (effect == "fade") {
+                        return "faded";
+                    } else if (effect == "slide") {
+                        return "slided";
                     } else {
-                        $(".b_SideImg .selected", obj).removeClass("selected");
-                        if ($(".b_SideImg", obj).is(":hidden")) {
-                            $(".b_SideImg", obj).show();
-                        }
+                        console.error("Set effect, slide or fade.");
                     }
-                    if (options.hideItems) {
-                        items.hide();
-                        $("br", obj).hide();
-                    }
-                    var b_iimg = $(".b_slides img[src='" + this.src + "']", obj).parent().index();
-                    $(".b_slides li:eq(" + b_iimg + "), .b_paging a:eq(" + b_iimg + ")", obj).addClass("selected");
-                    if (options.scrollTo) {
-                        $("body").scrollTop($(".b_SideImg", obj).offset().top);
-                    }
-                    if (options.autoPlay && $(".b_pause").is(":hidden")) {
-                        $(".b_play", obj).click();
-                    }
+                });
+                if (options.hideControl) {
+                    $(".b_control", obj).addClass("hidden");
                 }
-                return false;
-            });
-            if (options.autoStart) {
-                items.first().click();
+                if (options.infoBtn) {
+                    $(".b_content", obj).append('<div class="b_info"></div>');
+                    $(".b_info", obj).click(function () {
+                        $(".b_slides p", obj).toggleClass("show_info");
+                    });
+                }
+                if (options.noCopy) {
+                    $(".b_content", obj).append('<div class="b_copy"></div>');
+                }
+                if (options.fullscreen) {
+                    $(".b_content", obj).append('<div class="b_fullscreen"></div>');
+                    $(".b_fullscreen", obj).toggle(function () {
+                        enterFS($(".b_SideImg", obj)[0], obj);
+                    }, function () {
+                        exitFS(obj, $(window));
+                    });
+                }
+                var nload = 0;
+                items.each(function (i) {
+                    var url, tip, tag = this.tagName;
+                    if (tag == "A") {
+                        url = this.href;
+                        tip = this.innerHTML;
+                    } else if (tag == "IMG") {
+                        url = this.src;
+                        tip = this.alt;
+                    } else {
+                        console.error("Does not support " + tag + " tag.");
+                    }
+                    if (!tip) {
+                        tip = "...";
+                    }
+                    if (options.infoContent.length) {
+                        tip = options.infoContent;
+                    }
+                    $(".b_paging", obj).append('<a class="b_wait" href="#">' + (i + 1) + '</a>');
+                    $(".b_slides", obj).append('<li><img src="' + url + '" alt="Please wait..." /><p>' + tip + '</p></li>');
+                    $(".b_slides img", obj).eq(i).bind("load error", function (e) {
+                        if (e.type == "error") {
+                            $(".b_slides p", obj).eq(i).html("<strong style='color:red'>Image not found</strong><br />" + this.src);
+                            this.alt = "Image not found";
+                            this.src = "http://a.servimg.com/u/f75/17/70/81/78/galler10.png";
+                        }
+                        var mload = nload++,
+                            iload = items.length - 1;
+                        $(".b_paging a", obj).eq(i).removeClass("b_wait");
+                        $(".b_load", obj).text(Math.floor(mload * 100 / iload) + "%");
+                        if (mload == iload) {
+                            $(".b_load", obj).delay(100).fadeOut(500);
+                        }
+                    });
+                });
+                if (options.infoShow) {
+                    $(".b_slides li p", obj).addClass("show_info");
+                }
+                if (options.autoResize) {
+                    var sswidth = $(".b_SideImg", obj).width();
+                    var ssheight = $(".b_content", obj).height();
+                    $(window).resize(function () {
+                        $(".b_SideImg", obj).css("position", "fixed").width(function () {
+                            if (obj.width() < sswidth + 10) {
+                                return obj.width() - 10;
+                            } else {
+                                return sswidth;
+                            }
+                        }).css("position", "relative");
+                        $(".b_content", obj).height(function () {
+                            var hctrl = $(".b_control", obj).height();
+                            if (options.hideControl) {
+                                hctrl = 0;
+                            }
+                            if ($(window).height() < ssheight + hctrl + 10) {
+                                return $(window).height() - hctrl - 10;
+                            } else {
+                                return ssheight;
+                            }
+                        });
+                    });
+                    $(window).resize();
+                }
+                $(".b_next", obj).click(function () {
+                    slideleft("last", "first", obj, effect);
+                });
+                $(".b_prev", obj).click(function () {
+                    slideleft("first", "last", obj, effect);
+                });
+                $(".b_play", obj).click(function () {
+                    options.start();
+                    $(".b_play", obj).hide().next().show();
+                    slideshow(obj, speed, effect);
+                });
+                $(".b_pause, .b_prev, .b_next, .b_paging a", obj).click(function () {
+                    if ($(".b_play", obj).is(":hidden")) {
+                        stopslide(obj);
+                    }
+                });
+                $(".b_pause", obj).click(function () {
+                    options.pause();
+                });
+                $(".b_paging a", obj).click(function () {
+                    $(".b_SideImg .selected", obj).removeClass("selected");
+                    $(this).addClass("selected");
+                    $(".b_slides li", obj).eq($(this).index()).addClass("selected");
+                    return false;
+                });
+                $(".b_slides li:first, .b_paging a:first", obj).addClass("selected");
+                if (options.scrollTo) {
+                    $("body").scrollTop($(".b_SideImg", obj).offset().top);
+                }
+                if (options.autoPlay) {
+                    $(".b_play", obj).click();
+                }
+                items.remove();
+                $("br", obj).remove();
             }
         });
     };
-    function slideshow(z, s, r, e) {
+
+    function slideshow(z, s, e) {
         $(".b_timebar", z).animate({
             width: "100%"
         }, s, "linear", function () {
             $(".b_timebar", z).css("width", 0);
-            if (r) {
-                slideleft("first", "last", z, e);
-            } else {
-                slideleft("last", "first", z, e);
-            }
-            slideshow(z, s, r, e);
+            slideleft("last", "first", z, e);
+            slideshow(z, s, e);
         });
     }
+
     function stopslide(z) {
         $(".b_play", z).show().next().hide();
         $(".b_timebar", z).css("width", 0).stop();
     }
+
     function slideleft(x, y, z, e) {
         var a = $(".b_slides li.selected", z),
             b;
@@ -213,12 +198,8 @@
             }
         }
         if (e == "fade") {
-            $(".b_next, .b_prev", z).addClass("stop");
-            a.removeClass("selected").fadeOut(400);
-            b.fadeIn(400, function () {
-                b.addClass("selected");
-                $(".b_next, .b_prev", z).removeClass("stop");
-            });
+            a.removeClass("selected")
+            b.addClass("selected");
             setindex(z, b);
         } else if (e == "slide") {
             var k = "100%",
@@ -239,17 +220,49 @@
                 b.addClass("selected");
                 setindex(z, b);
             });
-        } else {
-            console.error("Set effect, slide or fade");
         }
     }
-    function setindex(z, b) {
-        $(".b_paging .selected", z).removeClass("selected");
-        $(".b_paging a", z).eq(b.index()).addClass("selected");
-    }
+
     function reset(a) {
         a.css({
             left: 0
         }).removeClass("change");
+    }
+
+    function setindex(z, b) {
+        $(".b_paging .selected", z).removeClass("selected");
+        $(".b_paging a", z).eq(b.index()).addClass("selected");
+    }
+
+    function enterFS(e, z) {
+        if (e.requestFullscreen) {
+            e.requestFullscreen();
+        } else if (e.msRequestFullscreen) {
+            e.msRequestFullscreen();
+        } else if (e.mozRequestFullScreen) {
+            e.mozRequestFullScreen();
+        } else if (e.webkitRequestFullScreen) {
+            e.webkitRequestFullScreen();
+        } else {
+            $(".b_SideImg", z).css({
+                position: "fixed"
+            }).width($(window).width() - 10);
+            $(".b_content", z).height($(window).height() - $(".b_control", z).height() - 10);
+        }
+    }
+
+    function exitFS(z, w) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else {
+            $(".b_SideImg", z).removeAttr("style");
+            w.resize();
+        }
     }
 })(jQuery);
